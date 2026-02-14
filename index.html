@@ -87,6 +87,10 @@
       margin-bottom: 0;
     }
 
+    .initiatives li {
+      margin-bottom: 1em;
+    }
+
     @media screen and (min-width: 768px) {
       html {
         padding: 2em 0.5em;
@@ -139,14 +143,14 @@
       <li>Development from prototyping to production</li>
       <li>Browser product advising</li>
     </ul>
-      
+
     <h2>Areas of work</h2>
     <ul>
       <li>New web capabilities or browser features</li>
       <li>Non-HTTP protocols, multiprotocol support</li>
       <li>Decentralized/distributed web support</li>
       <li>IPFS / libp2p</li>
-      <li>Browser extensions and APIs<li>
+      <li>Browser extensions and APIs</li>
       <li>Web archiving / preservation</li>
       <li>P2P/Web3 integration and compat</li>
       <li>Web form factor / OS integration / webviews</li>
@@ -158,23 +162,23 @@
     </ul>
 
     <h2>Initiatives</h2>
-    <ul>
-      <li>(Ongoing) Custom scheme support in browsers: Since co-creating the Libdweb project at Mozilla in 2018, over nearly 5yrs at Protocol labs, and now even a few years after that, still pushing on reducing barriers to enabling a multi-protocol web. Kicked off while leading the Browsers &amp; Platforms team at PL, currently advising Igalia and the IPFS Fdn on an ongoing initiative to get custom scheme support into web extension manifests, and to follow that with backing those schemes with byte streams, not just extension-bundled HTML pages.</li>
-      <li>(2024-5) - Web Features Project: Spent six months working in the W3C Web DX CG on behalf of Google, creating web feature definitions which let us reason about the web platform as ~1200 discrete features vs 15k+ unique pieces. These are used by MDN, Caniuse, Visual Studio, and many more.</li>
-      <li>(2022-5) - Ed25519 support in the Web Cryptography API: Kicked this off while at Protocol Labs, continued advising the project generally and directly getting vendor movement over 3+ years before all three engines finally shipped it in release versions in 2025 (Igalia post, IPFS Fdn post).</li>
+    <ul class="initiatives">
+      <li><strong>(Ongoing)</strong> Custom scheme support in browsers: Since co-creating the Libdweb project at Mozilla in 2018, over nearly 5yrs at Protocol labs, and now even a few years after that, still pushing on reducing barriers to enabling a multi-protocol web. Kicked off while leading the Browsers &amp; Platforms team at PL, currently advising Igalia and the IPFS Fdn on an ongoing initiative to get custom scheme support into web extension manifests, and to follow that with backing those schemes with byte streams, not just extension-bundled HTML pages.</li>
+      <li><strong>(2024-5)</strong> Web Features Project: Spent six months working in the W3C Web DX CG on behalf of Google, creating web feature definitions which let us reason about the web platform as ~1200 discrete features vs 15k+ unique pieces. These are used by MDN, Caniuse, Visual Studio, and many more.</li>
+      <li><strong>(2022-5)</strong> Ed25519 support in the Web Cryptography API: Kicked this off while at Protocol Labs, continued advising the project generally and directly getting vendor movement over 3+ years before all three engines finally shipped it in release versions in 2025 (Igalia post, IPFS Fdn post).</li>
     </ul>
 
     <h2>Who</h2>
 
     <p>
-      After many years working towards paradigmatic change on the web at 
-      Mozilla and Protocol Labs, WebTransitions was formed by 
+      After many years working towards paradigmatic change on the web at
+      Mozilla and Protocol Labs, WebTransitions was formed by
       <a href="https://metafluff.com">Dietrich Ayala</a>
       as a not-for-profit organization (pending) to enable experimentation and
       innovation on the web platform.
-      
-      It is a connector between those who want to see change on the web, and those who 
-      can help make it happen - or at least help understand whether it should or could 
+
+      It is a connector between those who want to see change on the web, and those who
+      can help make it happen - or at least help understand whether it should or could
       happen at all.
     </p>
 
@@ -213,7 +217,7 @@
     <ul>
       <li><a href="https://blogs.igalia.com/jfernandez/2022/11/14/discovering-chromes-pre-defined-custom-handlers/">Igalia HOWTO on implementing custom protocols in Chromium</a>
       <li><a href="https://blogs.igalia.com/jfernandez/2022/08/10/new-custom-handlers-component-for-chrome/">Igalia announces new custom protocol handlers for Chromium</a>
-      <li><a href="https://blog.ipfs.tech/2021-01-15-ipfs-and-igalia-collaborate-on-dweb-in-browsers/">New dweb scheme registered, localhost origin interop/compat and more with Igalia</a> 
+      <li><a href="https://blog.ipfs.tech/2021-01-15-ipfs-and-igalia-collaborate-on-dweb-in-browsers/">New dweb scheme registered, localhost origin interop/compat and more with Igalia</a>
     </ul>
 
     IPFS in web browsers
@@ -250,12 +254,12 @@
       <h4>Protocol Extensibility</h4>
 
       HTTP is the default protocol for the web today but is constrained in many
-      ways. Alternate protocols with different features and trade-offs are 
-      difficult to experiment with and not supported in most web user agents. 
-      This area of work covers alternate protocol support in browsers, from 
+      ways. Alternate protocols with different features and trade-offs are
+      difficult to experiment with and not supported in most web user agents.
+      This area of work covers alternate protocol support in browsers, from
       internal plumbing to user interface to extension APIs.
     </div>
- 
+
     <div>
       <h4>IPFS, libp2p</h4>
 
@@ -266,7 +270,7 @@
       like when they're integrated? What barriers exist to using these on the
       web today? This area of work covers all of these questions and more.
     </div>
- 
+
     <div>
       <h4>WebCrypto API</h4>
 
@@ -284,7 +288,7 @@
       and others in capacities varying from research, tools and development, specifications, grant
       writing and advising.
     </div>
- 
+
     <div>
       <h4>Verifiability/Provenance</h4>
 
@@ -297,7 +301,7 @@
       itself? Let's answer that question through research, prototyping and
       community building.
     </div>
- 
+
     <div>
       <h4>Experimental User Agents</h4>
 
@@ -313,7 +317,7 @@
       search and search placement is the primary funding source for web
       browsers. What other ways might the web be powered, browsers funded, standards made?
     </div>
- 
+
     <div>
       <h4>Web Form Factor / OS Integration / Web-as-apps</h4>
 
