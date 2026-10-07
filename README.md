@@ -85,16 +85,15 @@ One-time staging setup already done:
   custom domain `staging.webtransitions.org` attached
 - write deploy key added to the repo; private half at
   `~/.config/webtransitions-staging/id_ed25519` on the dev box
+- `GITHUB_STAGING_KEY_B64` stored on `spindle.superflow.dev` via Tangled XRPC;
+  the ready-to-restore value remains at
+  `~/.config/webtransitions-staging/id_ed25519.b64`
 
-Remaining manual steps:
+Remaining manual step:
 
 1. DNS: `staging.webtransitions.org. CNAME webtransitions.github.io.`
    (cert is provisioned automatically once it resolves; then enable
    "Enforce HTTPS" in the repo's Pages settings)
-2. Tangled repo secret `GITHUB_STAGING_KEY_B64`: paste the single-line base64
-   at `~/.config/webtransitions-staging/id_ed25519.b64` (private half of the
-   staging deploy key). The staging deploy fails with a clear message until
-   this is set.
 
 ## Deployment
 
