@@ -38,6 +38,10 @@ steps:
   - name: push to github
     command: |
       set -euo pipefail
+      # The nixery image has no passwd entry for the step's uid, and OpenSSH
+      # refuses to run without one ("No user exists for uid 0").
+      grep -q "^[^:]*:[^:]*:$(id -u):" /etc/passwd 2>/dev/null \
+        || echo "ci:x:$(id -u):$(id -g)::/tmp:/bin/sh" >> /etc/passwd
       umask 077
       d=$(mktemp -d)
       printf '%s' "$GITHUB_MIRROR_KEY_B64" | base64 -d > "$d/key"
