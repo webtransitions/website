@@ -37,7 +37,8 @@ Body in markdown.
 ```
 
 - URL: `https://webtransitions.org/my-post-slug/` (filename = slug, metafluff-style but off the domain root, no `/posts/` prefix)
-- `draft: true` hides a post from production builds but keeps it in `npm start`
+- `draft: true` hides a post from production builds; it stays in `npm start`
+  locally and appears on staging
 - `updated: 2026-10-09` marks a revision (feeds + atproto `updatedAt`)
 - `atproto_rkey: custom-key` overrides the atproto record key (default: slug)
 - `atproto_skip: true` keeps a post off atproto entirely
@@ -50,6 +51,51 @@ npm start        # dev server at http://localhost:8080
 npm run build    # production build to _site/
 ```
 
+## Staging
+
+Staging runs the full pipeline against a private URL before anything hits
+production:
+
+- **Branch `staging`** on Tangled → `.tangled/workflows/deploy-staging.yml`
+  builds and pushes the output to the `gh-pages` branch of
+  **github.com/webtransitions/staging**, served at
+  **staging.webtransitions.org**.
+- Staging builds differ from production: `SITE_ENV=staging` renders a banner
+  on every page, `BUILD_DRAFTS=1` includes draft posts, feed/sitemap URLs use
+  the staging domain, and `ATPROTO_DID` is never set — so staging pages never
+  emit the standard.site verification routes or claim the atproto identity.
+
+The flow:
+
+```sh
+git switch staging                # work here; commit as usual
+git push origin staging           # → https://staging.webtransitions.org
+# …test, iterate…
+git switch main
+git merge --ff-only staging       # ship exactly what you tested
+git push origin main              # → production deploy
+```
+
+(Anything not fast-forwardable means main moved — rebase staging onto main
+first and re-test.)
+
+One-time staging setup already done:
+
+- `webtransitions/staging` repo exists, Pages serves from `gh-pages`/(root),
+  custom domain `staging.webtransitions.org` attached
+- write deploy key added to the repo; private half at
+  `~/.config/webtransitions-staging/id_ed25519` on the dev box
+
+Remaining manual steps:
+
+1. DNS: `staging.webtransitions.org. CNAME webtransitions.github.io.`
+   (cert is provisioned automatically once it resolves; then enable
+   "Enforce HTTPS" in the repo's Pages settings)
+2. Tangled repo secret `GITHUB_STAGING_KEY_B64`: paste the single-line base64
+   at `~/.config/webtransitions-staging/id_ed25519.b64` (private half of the
+   staging deploy key). The staging deploy fails with a clear message until
+   this is set.
+
 ## Deployment
 
 Tangled is the source of truth **and** the build system. On every push to
@@ -58,16 +104,20 @@ main, `.tangled/workflows/deploy.yml` builds with Eleventy and force-pushes
 deletions propagate). GitHub Pages serves `webtransitions.org` from that
 branch — GitHub is only a static host; nothing is built there.
 
-One-time setup on GitHub (repo Settings → Pages):
+One-time setup on GitHub (repo Settings → Pages) — already done:
 
 - Build and deployment → Source: **Deploy from a branch** → `gh-pages`, `/ (root)`
 - Custom domain: `webtransitions.org` (the `CNAME` file in the output keeps it
   set; `.nojekyll` makes Pages serve dotfiles like `.well-known`)
+- The build asserts `_site/CNAME` is the production domain before pushing, so
+  a staging tree can never be wired to the prod repo
 
 Tangled repo secrets:
 
 - `GITHUB_MIRROR_KEY_B64` — base64 private half of a write-enabled GitHub
   deploy key (already set for the mirror; `deploy.yml` reuses it)
+- `GITHUB_STAGING_KEY_B64` — same, for the `webtransitions/staging` repo (see
+  Staging above)
 - `ATPROTO_DID` — optional, emits the standard.site verification routes at build
 
 `.tangled/workflows/mirror.yml` still mirrors all source branches to GitHub,

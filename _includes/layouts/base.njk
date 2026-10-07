@@ -23,6 +23,9 @@
   	<style>{% getBundle "css" %}</style>
   </head>
   <body>
+  {%- if env.staging %}
+  <div class="staging-banner" role="note">staging build — production is <a href="https://webtransitions.org/">webtransitions.org</a></div>
+  {%- endif %}
   	<main>
   		{{ content | safe }}
   	</main>

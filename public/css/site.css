@@ -162,3 +162,29 @@ p,ul,ol {
   font-size: 0.85rem;
   color: #666;
 }
+
+/* ---------------------------------------------------------------
+   Staging build banner (SITE_ENV=staging)
+   --------------------------------------------------------------- */
+
+.staging-banner {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.35em 1em;
+  margin: -1em -0.5em 1em;
+  background: rgb(71 11 0);
+  color: rgb(247 226 231);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.staging-banner a {
+  color: rgb(247 226 231);
+}
+
+@media screen and (min-width: 768px) {
+  .staging-banner {
+    margin: -2em -0.5em 1em;
+  }
+}

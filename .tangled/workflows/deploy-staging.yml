@@ -1,0 +1,71 @@
+# Build the site for STAGING and push the static output to the gh-pages branch
+# of the separate webtransitions/staging repo on GitHub, which serves
+# staging.webtransitions.org. Production deploys (main branch -> deploy.yml)
+# are untouched by this workflow.
+#
+# GitHub can only serve one Pages site per repo, which is why staging output
+# goes to its own repo. Setup:
+#
+#   - GitHub repo webtransitions/staging (public), Pages serving from
+#     gh-pages / (root)
+#   - custom domain staging.webtransitions.org attached to that repo (the
+#     CNAME file written into the output below keeps it set)
+#   - DNS: staging.webtransitions.org CNAME webtransitions.github.io
+#   - a write-enabled deploy key for webtransitions/staging, private half
+#     base64-encoded on one line in the Tangled repo secret
+#     GITHUB_STAGING_KEY_B64
+#
+# Differences from the production build:
+#   - SITE_ENV=staging renders the banner on every page
+#   - BUILD_DRAFTS=1 includes draft posts
+#   - SITE_URL=https://staging.webtransitions.org/ for feed/sitemap URLs
+#   - ATPROTO_DID is never set: the standard.site verification routes are not
+#     emitted, so staging pages never claim the site's atproto identity
+
+when:
+  - event: ["push"]
+    branch: ["staging"]
+  - event: ["manual"]
+
+engine: "nixery"
+
+dependencies:
+  nixpkgs: [git, openssh, coreutils, nodejs_22]
+
+environment:
+  GITHUB_STAGING_REPO: "webtransitions/staging"
+
+steps:
+  - name: build
+    # No lockfile is committed (metafluff-style), so install rather than ci.
+    command: |
+      set -euo pipefail
+      npm install --no-audit --no-fund
+      SITE_ENV=staging BUILD_DRAFTS=1 SITE_URL="https://staging.webtransitions.org/" npm run build
+      test -f _site/index.html
+      # Points the Pages custom domain at staging; prod CNAME is overwritten.
+      printf 'staging.webtransitions.org' > _site/CNAME
+
+  - name: push static output to gh-pages
+    command: |
+      set -euo pipefail
+      : "${GITHUB_STAGING_KEY_B64:?set the Tangled repo secret GITHUB_STAGING_KEY_B64 (base64 private half of a write-enabled deploy key for webtransitions/staging)}"
+      src_sha=$(git rev-parse HEAD)
+      # The nixery image has no passwd entry for the step's uid, and OpenSSH
+      # refuses to run without one ("No user exists for uid 0").
+      grep -q "^[^:]*:[^:]*:$(id -u):" /etc/passwd 2>/dev/null \
+        || echo "ci:x:$(id -u):$(id -g)::/tmp:/bin/sh" >> /etc/passwd
+      umask 077
+      d=$(mktemp -d)
+      printf '%s' "$GITHUB_STAGING_KEY_B64" | base64 -d > "$d/key"
+      # GitHub's published host key (api.github.com/meta ssh_keys); pinned so
+      # the push cannot be redirected.
+      echo 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl' > "$d/known_hosts"
+      export GIT_SSH_COMMAND="ssh -i $d/key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$d/known_hosts"
+      cd _site
+      git init -b gh-pages .
+      git config user.name "tangled-deploy"
+      git config user.email "deploy@webtransitions.org"
+      git add -A
+      git commit -m "Staging deploy $src_sha"
+      git push --force "git@github.com:$GITHUB_STAGING_REPO.git" gh-pages:gh-pages

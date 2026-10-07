@@ -31,6 +31,7 @@ dependencies:
 
 environment:
   GITHUB_REPO: "webtransitions/website"
+  SITE_URL: "https://webtransitions.org/"
 
 steps:
   - name: build
@@ -40,6 +41,8 @@ steps:
       npm install --no-audit --no-fund
       npm run build
       test -f _site/index.html
+      # Guard: never push a tree whose CNAME is not the production domain.
+      test "$(cat _site/CNAME)" = "webtransitions.org"
 
   - name: push static output to gh-pages
     command: |

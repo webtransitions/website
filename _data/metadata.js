@@ -1,6 +1,6 @@
 export default {
 	"title": "WebTransitions",
-	"url": "https://webtransitions.org/",
+	"url": process.env.SITE_URL || "https://webtransitions.org/",
 	"language": "en",
 	"description": "Supporting transitional change on the web platform and in browsers with funding, coordination and development.",
 	"feed": {

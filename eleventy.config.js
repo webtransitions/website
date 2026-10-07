@@ -9,8 +9,9 @@ import pluginFilters from "./_config/filters.js";
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function(eleventyConfig) {
 	// Drafts, see also _data/eleventyDataSchema.js
+	// BUILD_DRAFTS=1 includes drafts even in production-style builds (staging).
 	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
-		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
+		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build" && !process.env.BUILD_DRAFTS) {
 			return false;
 		}
 	});
@@ -64,7 +65,7 @@ export default async function(eleventyConfig) {
 			language: "en",
 			title: "WebTransitions",
 			subtitle: "Supporting transitional change on the web platform and in browsers with funding, coordination and development.",
-			base: "https://webtransitions.org/",
+			base: process.env.SITE_URL || "https://webtransitions.org/",
 			author: {
 				name: "Dietrich Ayala",
 			}
