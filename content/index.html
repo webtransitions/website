@@ -1,120 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pragati+Narrow:wght@400;700&display=swap" rel="stylesheet">
-
-  <style>
-
-    .pragati-narrow-regular {
-      font-family: "Pragati Narrow", sans-serif;
-      font-weight: 400;
-      font-style: normal;
-    }
-
-    .pragati-narrow-bold {
-      font-family: "Pragati Narrow", sans-serif;
-      font-weight: 700;
-      font-style: normal;
-    }
-
-		/*
-		https://gist.github.com/JoeyBurzynski/617fb6201335779f8424ad9528b72c41
-		*/
-
-		html {
-			max-width: 70ch;
-			padding: 1em 0.5em;
-			margin: auto;
-			line-height: 1.25;
-			font-size: 1.25rem;
-      background: rgb(247 226 231);
-      font-family: "Pragati Narrow";
-      color: rgb(71 11 0);
-		}
-
-    /*
-    .bgimage-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -10;
-      overflow: hidden;
-    }
-
-    .bgimage-container:after {
-      content: "";
-      display: block;
-      position: fixed;
-      bottom: 0;
-      right: 0;
-      width: 600px;
-      height: 600px;
-      background: rgb(247 226 231);
-      transform: rotate(-15deg);
-      transform-origin: center center;
-    }
-    */
-
-    .content {
-      background-color: rgb(247 226 231);
-    }
-
-		h1,h2,h3,h4,h5,h6 {
-      font-family: "Pragati Narrow";
-      /*
-			margin: 1em 0 0.5em;
-      */
-		}
-
-    .subtitle {
-      margin: 0;
-    }
-
-		p,ul,ol {
-      /*
-			margin-bottom: 1.5em;
-      */
-			color: #1d1d1d;
-		}
-
-    ul {
-      list-style-type: none;
-      padding-left: 0;
-      margin-bottom: 0;
-    }
-
-    .initiatives li {
-      margin-bottom: 1em;
-    }
-
-    @media screen and (min-width: 768px) {
-      html {
-        padding: 2em 0.5em;
-        margin: auto;
-        line-height: 1.25;
-        font-size: 1.25rem;
-      }
-
-      h1,h2,h3,h4,h5,h6 {
-        margin: 1em 0 0.5em;
-      }
-
-      p,ul,ol {
-        margin-bottom: 1.5em;
-      }
-    }
-
-    @media screen and (min-width: 992px) {
-    }
-
-  </style>
-  <script defer data-site="SUNQHGSW" src="https://cdn.usefathom.com/script.js"></script>
-</head>
-<body>
+---
+layout: layouts/base.njk
+title: WebTransitions
+description: Supporting transitional change on the web platform and in browsers with funding, coordination and development.
+---
   <div class="content">
 
     <h1>WebTransitions</h1>
@@ -147,7 +35,7 @@
     <h2>Initiatives</h2>
     <ul class="initiatives">
       <li><strong>(2026)</strong> EU Cyber Resilience Act <a href="https://labs.etsi.org/rep/stan4cra/en-304-617">draft standard for Standalone and Embedded Browsers</a>: Subject matter expert hired by Crab Nebula to participate in authoring, review, and comment resolution. Collaborated with stakeholders, policy makers and browser vendors to synthesize EU regulatory requirements and web standards into a document that balances the needs of each, while being as future-proof as possible.</li>
-      <li><strong>(2026)</strong> The <a href="servo-readiness/">Servo Readiness Report</a> (<a href="servo-readiness/servo-readiness-one-pager.pdf">PDF</a>), a report-in-progress evaluating how far Servo is from being a usable web engine, and what amount of funding would get it usable sooner, with an aim to inform planning for a non-US multi-stakeholder governed web engine for use by everyone.</li>
+      <li><strong>(2026)</strong> The <a href="/servo-readiness/">Servo Readiness Report</a> (<a href="/servo-readiness/servo-readiness-one-pager.pdf">PDF</a>), a report-in-progress evaluating how far Servo is from being a usable web engine, and what amount of funding would get it usable sooner, with an aim to inform planning for a non-US multi-stakeholder governed web engine for use by everyone.</li>
       <li><strong>(2018-∞)</strong> Custom scheme support in browsers: Since co-creating the <a href="https://github.com/mozilla/libdweb">Libdweb</a> project at Mozilla in 2018, over nearly 5yrs working on <a href="https://blog.ipfs.tech/?tags=browsers">P2P support in browsers</a> at <a href="https://www.protocol.ai/">Protocol Labs</a>, and getting bugs fixed, standards revised, and even major refactors in Chromium, still pushing on reducing barriers to enabling a multi-protocol web. Kicked off while leading the Browsers &amp; Platforms team at PL, currently advising Igalia and the IPFS Fdn on an ongoing initiative to get custom scheme support into web extension manifests, and to follow that with backing those schemes with byte streams, not just extension-bundled HTML pages.</li>
       <li><strong>(2022-5)</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API">Ed25519 support in the Web Cryptography API</a>: Kicked this off while at Protocol Labs, continued advising the project generally and directly getting vendor movement over 3+ years before all three engines finally shipped it in release versions in 2025 (<a href="https://blogs.igalia.com/jfernandez/2025/08/25/ed25519-support-lands-in-chrome-what-it-means-for-developers-and-the-web/">Igalia post</a>, <a href="https://blog.ipfs.tech/2025-08-ed25519/">IPFS Fdn post</a>).</li>
       <li><strong>(2024-5)</strong> <a href="https://web-platform-dx.github.io/web-features/">Web Features Project</a>: Spent six months working in the W3C Web DX CG on behalf of Google, creating web feature definitions which let us reason about the web platform as ~1200 discrete features vs 15k+ unique pieces. These are used by MDN, Caniuse, Visual Studio, and many more.</li>
@@ -227,6 +115,12 @@
       <li><a href="https://blogs.igalia.com/jfernandez/2023/06/20/secure-curves-in-the-web-cryptography-api/">Igalia's Javi Ferndandez on Ed25519 support</a>
     </ul>
     -->
+
+{%- if collections.posts.length %}
+    <h2>Writing</h2>
+    {% set postslist = collections.posts %}
+    {% include "postslist.njk" %}
+{%- endif %}
 
     <h2>Let's work together</h2>
 
@@ -324,12 +218,3 @@
     -->
 
   </div>
-  <div class="footer">
-  </div>
-  <!--
-  <div class="bgimage-container">
-    <image class="bgimage" src="forest.jpg">
-  </div>
-  -->
-</body>
-</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="{{ metadata.language }}">
+  <head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>{{ title or metadata.title }}</title>
+  	<meta name="description" content="{{ description or metadata.description }}">
+  	<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
+  	<meta name="generator" content="{{ eleventy.generator }}">
+
+  	<link rel="preconnect" href="https://fonts.googleapis.com">
+  	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  	<link href="https://fonts.googleapis.com/css2?family=Pragati+Narrow:wght@400;700&display=swap" rel="stylesheet">
+
+  	{#- standard.site document verification: links the page back to its
+  	    atproto record. https://standard.site #}
+  	{%- if atproto.did and (atproto_document or layout == "layouts/post.njk") %}
+  	<link rel="site.standard.document" href="at://{{ atproto.did }}/{{ atproto.documentCollection }}/{{ atproto_rkey or page.fileSlug }}">
+  	{%- endif %}
+
+  	{#- CSS per-page bundle, inlined for performance #}
+  	{%- css %}{% include "public/css/site.css" %}{% endcss %}
+  	<style>{% getBundle "css" %}</style>
+  </head>
+  <body>
+  	<main>
+  		{{ content | safe }}
+  	</main>
+
+  	<footer class="footer">
+  		<p><em>Built with <a href="https://www.11ty.dev/">{{ eleventy.generator }}</a>.
+  		{% if atproto.did %}<a href="https://standard.site">Syndicated on the AT Protocol</a> · <a href="/feed/feed.xml">Atom feed</a>{% else %}<a href="/feed/feed.xml">Atom feed</a>{% endif %}</em></p>
+  	</footer>
+
+  	<!-- This page `{{ page.url }}` was built on {% currentBuildDate %} -->
+
+  	<!-- Fathom - beautiful, simple website analytics -->
+  	<script defer data-site="SUNQHGSW" src="https://cdn.usefathom.com/script.js"></script>
+  </body>
+</html>
