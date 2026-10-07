@@ -52,10 +52,26 @@ npm run build    # production build to _site/
 
 ## Deployment
 
-Tangled is the source of truth; `.tangled/workflows/mirror.yml` mirrors to
-GitHub, and `.github/workflows/deploy.yml` builds with Eleventy and deploys to
-GitHub Pages. In GitHub repo settings, Pages must use **Source: GitHub
-Actions** (custom domain `webtransitions.org` stays configured as before).
+Tangled is the source of truth **and** the build system. On every push to
+main, `.tangled/workflows/deploy.yml` builds with Eleventy and force-pushes
+`_site/` to the `gh-pages` branch on GitHub (an orphan commit each time, so
+deletions propagate). GitHub Pages serves `webtransitions.org` from that
+branch — GitHub is only a static host; nothing is built there.
+
+One-time setup on GitHub (repo Settings → Pages):
+
+- Build and deployment → Source: **Deploy from a branch** → `gh-pages`, `/ (root)`
+- Custom domain: `webtransitions.org` (the `CNAME` file in the output keeps it
+  set; `.nojekyll` makes Pages serve dotfiles like `.well-known`)
+
+Tangled repo secrets:
+
+- `GITHUB_MIRROR_KEY_B64` — base64 private half of a write-enabled GitHub
+  deploy key (already set for the mirror; `deploy.yml` reuses it)
+- `ATPROTO_DID` — optional, emits the standard.site verification routes at build
+
+`.tangled/workflows/mirror.yml` still mirrors all source branches to GitHub,
+but that's backup/visibility only — serving doesn't depend on it.
 
 ## AT Protocol syndication (standard.site)
 
@@ -78,9 +94,9 @@ Verification links domain and records, in both directions:
 1. Create an app password for the account that will own the publication, e.g.
    at https://bsky.app/settings/app-passwords.
 2. Set `ATPROTO_DID` to that account's DID (from the app password page or
-   `did:web`/`did:plc` resolver). Add it as a GitHub Actions secret with the
-   same name so CI builds emit the verification routes; export it locally too
-   when you want them in `npm start`.
+   `did:web`/`did:plc` resolver). Add it as a Tangled repo secret with the same
+   name so CI builds emit the verification routes; export it locally too when
+   you want them in `npm start`.
 
 ### Publishing
 

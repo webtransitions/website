@@ -1,5 +1,9 @@
-# Push-mirror this repo to GitHub on every push, so GitHub Pages keeps serving
-# its custom domain while Tangled is the source of truth.
+# Push-mirror this repo to GitHub on every push, keeping a public backup while
+# Tangled is the source of truth.
+#
+# Static serving no longer depends on this mirror: .tangled/workflows/deploy.yml
+# builds the site and pushes the output to the gh-pages branch directly, which
+# is the branch GitHub Pages serves.
 #
 # Copy to .tangled/workflows/mirror.yml and set GITHUB_REPO. The repo needs:
 #   - a write-enabled GitHub deploy key, private half base64-encoded on one line

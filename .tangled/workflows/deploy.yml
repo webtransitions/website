@@ -1,0 +1,65 @@
+# Build the site with Eleventy on push to main, then force-push the static
+# output (_site/) to the gh-pages branch on GitHub. GitHub Pages serves
+# webtransitions.org from that branch — GitHub is only a static host; nothing
+# is built there.
+#
+# Setup (shared with mirror.yml):
+#   - GITHUB_REPO env below must match the GitHub repo
+#   - the write-enabled GitHub deploy key already stored base64-encoded in the
+#     Tangled repo secret GITHUB_MIRROR_KEY_B64 is reused for the push
+#   - optional Tangled repo secret ATPROTO_DID enables the standard.site
+#     verification routes (/.well-known/*) in the build
+#
+# One-time GitHub setup (repo Settings -> Pages):
+#   - Build and deployment -> Source: "Deploy from a branch"
+#   - Branch: gh-pages, folder / (root)
+#   - Custom domain: webtransitions.org (the CNAME file in _site keeps it set;
+#     the .nojekyll file in _site makes Pages serve dotfiles like .well-known)
+#
+# Each deploy is an orphan commit force-pushed over gh-pages, so deletions
+# propagate: pages removed from the build disappear from the branch.
+
+when:
+  - event: ["push"]
+    branch: ["main"]
+  - event: ["manual"]
+
+engine: "nixery"
+
+dependencies:
+  nixpkgs: [git, openssh, coreutils, nodejs_22]
+
+environment:
+  GITHUB_REPO: "webtransitions/website"
+
+steps:
+  - name: build
+    # No lockfile is committed (metafluff-style), so install rather than ci.
+    command: |
+      set -euo pipefail
+      npm install --no-audit --no-fund
+      npm run build
+      test -f _site/index.html
+
+  - name: push static output to gh-pages
+    command: |
+      set -euo pipefail
+      src_sha=$(git rev-parse HEAD)
+      # The nixery image has no passwd entry for the step's uid, and OpenSSH
+      # refuses to run without one ("No user exists for uid 0").
+      grep -q "^[^:]*:[^:]*:$(id -u):" /etc/passwd 2>/dev/null \
+        || echo "ci:x:$(id -u):$(id -g)::/tmp:/bin/sh" >> /etc/passwd
+      umask 077
+      d=$(mktemp -d)
+      printf '%s' "$GITHUB_MIRROR_KEY_B64" | base64 -d > "$d/key"
+      # GitHub's published host key (api.github.com/meta ssh_keys); pinned so
+      # the push cannot be redirected.
+      echo 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl' > "$d/known_hosts"
+      export GIT_SSH_COMMAND="ssh -i $d/key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$d/known_hosts"
+      cd _site
+      git init -b gh-pages .
+      git config user.name "tangled-deploy"
+      git config user.email "deploy@webtransitions.org"
+      git add -A
+      git commit -m "Deploy $src_sha"
+      git push --force "git@github.com:$GITHUB_REPO.git" gh-pages:gh-pages
