@@ -58,7 +58,7 @@
   .insight-num { background: rgb(71, 11, 0); color: #fff; font-size: 9px; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
   .insight-text { font-size: 11px; line-height: 1.45; color: #1d1d1d; }
 
-  .footer { font-size: 9px; color: #686868; text-align: center; margin-top: 2px; padding-top: 3px; border-top: 1px solid rgba(71, 11, 0, 0.15); }
+  .footer { font-size: 9px; color: #686868; text-align: center; margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(71, 11, 0, 0.15); }
 
   .pass { color: #1f6e1f; }
   .fail { color: #a33; }
@@ -177,7 +177,7 @@
   </div>
   <div class="insight-row">
     <div class="insight-num">4</div>
-    <div class="insight-text"><strong style="color:#686868;">154 unmeasured features</strong> &mdash; 78 JS built-ins and 23 semantic HTML elements are supported via SpiderMonkey and the HTML parser; 20 WebGL extensions depend on GPU drivers; 33 have unknown status. Closing the measurement gap would lift readiness without engine work.</div>
+    <div class="insight-text"><strong style="color:#686868;">154 unmeasured features</strong> &mdash; 78 JS built-ins and 23 semantic HTML elements are supported via SpiderMonkey and the HTML parser; 20 WebGL extensions depend on GPU drivers; 33 have unknown status. Closing the measurement gap could lift readiness without engine work.</div>
   </div>
   <div class="insight-row">
     <div class="insight-num">5</div>
@@ -192,7 +192,7 @@
   <p style="font-size:10px;line-height:1.45;color:#666;">Readiness measured against Baseline &ldquo;Widely Available&rdquo; (BWA) web features &mdash; supported 30+ months across all major browsers. Feature scores from Web Platform Tests (WPT) via WPT Feature Manifest mapping. 439 of 593 BWA features are measurable; 154 lack WPT mapping (78 JS built-ins tested by test262 not WPT, 23 semantic HTML elements, 53 other with unknown status). FTE-equivalent from per-author commit frequency (1 FTE &asymp; 22 commits/month, capped at 1.0 per person; 115 authors sum to ~13 FTE). BWA growth rate of ~52/year is the 2023&ndash;2025 average, normalized to exclude the 2022 interop spike. Known pipeline: 130 features graduating by 2028. Velocity parity = Servo&rsquo;s annual feature completion rate &ge; BWA annual growth rate. Completions/yr = 22 &times; (FTE/13)<sup>0.7</sup> (sublinear <a href="https://en.wikipedia.org/wiki/Brooks%27s_law">Brooks&rsquo;s Law</a> scaling). Stalled = zero or negative velocity over the full observation period (2023-Q3 to 2026-Q1). Regressions = features that lost &gt;5 percentage points. Cost at &euro;200k/yr per FTE: &euro;150k European senior SWE median total cost &times; 1.33&times; premium for browser-engine specialization (small talent pool, Rust/rendering/layout) and multi-disciplinary practice (software development + W3C/WHATWG standards participation + open-source community management). Calibrated against <a href="https://nlnet.nl/core/faq/">NLnet</a> (&euro;117k, up to &euro;65/hr), <a href="https://www.sovereign.tech/programs/fellowship">Sovereign Tech Fund</a> (&euro;79&ndash;101k, TVöD-Bund + employer costs), <a href="https://www.levels.fyi/companies/mozilla/salaries/software-engineer/locations/germany">Mozilla Germany</a> (&euro;145&ndash;164k), and <a href="https://github.com/servo/project">Servo grant rates</a> (&euro;248k US contractor). Excludes other opex, infrastructure, management overhead, and inflation. Usage-prioritized scenarios: at &lt;1% threshold, 35 features deprioritized (target 558, growth ~49/yr); at &lt;5%, 56 features deprioritized (target 537, growth ~47/yr). Data: wpt.fyi, web-features, Servo git history. Full interactive dashboard: dashboard.html.</p>
 </div>
 
-<p style="font-size:9px;line-height:1.45;color:#686868;margin-top:2px;">Thanks to the people who&rsquo;ve reviewed the methodology and approach so far. NOTE: AI was used in the making of this draft report. For suggestions for improvement or spotting of inaccuracies, contact <a href="mailto:dietrich@webtransitions.org">dietrich@webtransitions.org</a>.</p>
+<p style="font-size:9px;line-height:1.45;color:#686868;margin-top:2px;">Thanks to the people who&rsquo;ve reviewed the methodology and approach so far. NOTE: AI was used in the making of this draft report. For suggestions for improvement or to report inaccuracies, contact <a href="mailto:dietrich@webtransitions.org">dietrich@webtransitions.org</a>.</p>
 
 <div class="footer">
   Servo Baseline Readiness Evaluation &mdash; Data as of March 2026 &mdash; <a href="https://webtransitions.org">webtransitions.org</a>
