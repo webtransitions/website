@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servo Baseline Readiness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pragati+Narrow:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Pragati Narrow", sans-serif;
+    background: rgb(247, 226, 231); color: rgb(71, 11, 0);
+    width: 210mm; min-height: 297mm; padding: 24px 30px;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    font-size: 1.1rem; line-height: 1.3;
+  }
+
+  .header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; padding-bottom: 4px; }
+  h1 { font-size: 26px; font-weight: 700; color: rgb(71, 11, 0); }
+  .byline { font-size: 12px; color: #1d1d1d; margin-top: 2px; }
+  .byline a { color: rgb(71, 11, 0); }
+  .date { font-size: 12px; color: #666; }
+
+  .hero { display: flex; gap: 10px; margin-bottom: 14px; }
+  .hero-card {
+    flex: 1; border-radius: 8px; padding: 12px 10px; text-align: center;
+    background: rgba(71, 11, 0, 0.04); border: 1px solid rgba(71, 11, 0, 0.15);
+  }
+  .hero-label { font-size: 9px; color: #666; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px; }
+  .hero-value { font-size: 26px; font-weight: 700; color: rgb(71, 11, 0); }
+  .hero-sub { font-size: 10px; color: #666; margin-top: 2px; line-height: 1.4; }
+
+  .section { margin-bottom: 6px; }
+  .section h2 { font-size: 13px; font-weight: 700; color: rgb(71, 11, 0); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; border-bottom: 1px solid rgba(71, 11, 0, 0.2); padding-bottom: 2px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  th { text-align: left; color: #666; padding: 3px 5px; border-bottom: 1px solid rgba(71, 11, 0, 0.2); font-weight: 700; }
+  td { padding: 3px 5px; border-bottom: 1px solid rgba(71, 11, 0, 0.08); color: #1d1d1d; }
+  tr.highlight td { background: rgba(71, 11, 0, 0.08); color: rgb(71, 11, 0); font-weight: 700; }
+
+  .bar-track { height: 16px; background: rgba(71, 11, 0, 0.1); border-radius: 4px; overflow: hidden; display: flex; margin: 6px 0; }
+  .bar-seg { height: 100%; }
+
+  .callout {
+    background: #fff;
+    border: 1px solid rgba(71, 11, 0, 0.2); border-radius: 8px;
+    padding: 12px 16px; margin-bottom: 12px;
+    border: 1px solid rgba(71, 11, 0, 0.15);
+  }
+  .callout p { font-size: 12px; line-height: 1.55; color: #1d1d1d; }
+  .callout strong { color: rgb(71, 11, 0); }
+
+  .insight-row { display: flex; gap: 6px; margin-bottom: 3px; }
+  .insight-num { background: rgb(71, 11, 0); color: #fff; font-size: 9px; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .insight-text { font-size: 11px; line-height: 1.45; color: #1d1d1d; }
+
+  .footer { font-size: 9px; color: #686868; text-align: center; margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(71, 11, 0, 0.15); }
+
+  .pass { color: #1f6e1f; }
+  .fail { color: #a33; }
+  .warn-text { color: #8a5a00; }
+  a { color: rgb(71, 11, 0); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Servo Baseline Readiness</h1>
+  <div><a href="https://webtransitions.org" style="color:rgb(71,11,0);font-size:12px;margin-right:10px;">webtransitions.org</a><span style="color:#a33;font-weight:700;font-size:12px;letter-spacing:0.06em;margin-right:8px;">DRAFT</span><span class="date">March 2026</span></div>
+</div>
+
+<div class="callout">
+  <p>Servo is falling behind the web. It completes <strong>~22 features/year</strong> at production quality, while the Baseline &ldquo;<a href="https://web-platform-dx.github.io/web-features/">Widely Available</a>&rdquo; set grows at <strong>~52 features/year</strong>. At this pace, Servo plateaus around <strong>80% by ~2037 and never catches up</strong>. Full velocity parity requires <strong>~44 FTE</strong> (<strong>&euro;8.8M/yr</strong>, <strong>&euro;26.3M over 3yr</strong>). BWA features vary widely in real-world usage &mdash; a phased approach that prioritizes high-usage features first could reduce the initial headcount and cost by up to 40% while building toward full parity. The highest-leverage actions are <strong>unstalling 141 blocked features</strong> and fixing <strong>51 regressions</strong> (features that lost &gt;5 percentage points). This is a work-in-progress analysis focusing on one aspect of web engine development &mdash; feature-level readiness &mdash; and is not exhaustive. It is designed to orient thinking about cost and timelines. The central question: <strong>what would it cost in engineering investment alone to bring Servo to velocity parity within 3 years</strong>, excluding non-engineering and operational costs?</p>
+</div>
+
+<div class="hero">
+  <div class="hero-card">
+    <div class="hero-label">Current BWA readiness</div>
+    <div class="hero-value">19.8%</div>
+    <div class="hero-sub">87 of 439 measurable at &ge;95%</div>
+  </div>
+  <div class="hero-card">
+    <div class="hero-label">BWA growth</div>
+    <div class="hero-value">593 <span style="font-size:16px;color:#686868;">&rarr; ~879</span></div>
+    <div class="hero-sub">today &rarr; by 2031 (~52/yr)</div>
+  </div>
+  <div class="hero-card">
+    <div class="hero-label">Web feature velocity gap</div>
+    <div class="hero-value">22 vs 52</div>
+    <div class="hero-sub">Servo completes 22 features/yr<br>Web adds 52 new features/yr</div>
+  </div>
+  <div class="hero-card">
+    <div class="hero-label">Velocity parity</div>
+    <div class="hero-value">44 FTE</div>
+    <div class="hero-sub">&euro;8.8M/yr &mdash; &euro;26.3M over 3yr<br><span style="color:#686868;">(13 existing + 31 new)</span></div>
+  </div>
+  <div class="hero-card">
+    <div class="hero-label">Usage-prioritized parity</div>
+    <div class="hero-value">38&ndash;41 FTE</div>
+    <div class="hero-sub">&euro;7.6&ndash;8.2M/yr<br><span style="color:#686868;">skip low-usage (&lt;1&ndash;5%) features</span></div>
+  </div>
+</div>
+
+<div class="two-col">
+
+<div class="section">
+  <h2>Investment Scenarios (Moving Target)</h2>
+  <table>
+    <tr><th>FTE</th><th>Compl/yr</th><th>vs All BWA<br>(52/yr)</th><th>vs &lt;1%<br>(49/yr)</th><th>vs &lt;5%<br>(47/yr)</th><th>&euro;/yr</th><th>3yr</th></tr>
+    <tr><td>13 (now)</td><td>~22</td><td class="fail">&#x2717;</td><td class="fail">&#x2717;</td><td class="fail">&#x2717;</td><td>&euro;2.6M</td><td>&euro;7.8M</td></tr>
+    <tr><td>25</td><td>~35</td><td class="fail">&#x2717;</td><td class="fail">&#x2717;</td><td class="fail">&#x2717;</td><td>&euro;5.0M</td><td>&euro;15.0M</td></tr>
+    <tr style="background:rgba(42,125,42,0.08);"><td><strong>38</strong></td><td>~47</td><td class="fail">&#x2717;</td><td class="warn-text">&#x2248;</td><td class="pass">&#x2713;</td><td>&euro;7.6M</td><td>&euro;22.7M</td></tr>
+    <tr style="background:rgba(42,125,42,0.08);"><td><strong>41</strong></td><td>~49</td><td class="fail">&#x2717;</td><td class="pass">&#x2713;</td><td class="pass">&#x2713;</td><td>&euro;8.2M</td><td>&euro;24.5M</td></tr>
+    <tr class="highlight"><td>44</td><td>~52</td><td class="pass">&#x2713; parity</td><td class="pass">&#x2713;</td><td class="pass">&#x2713;</td><td>&euro;8.8M</td><td>&euro;26.3M</td></tr>
+    <tr><td>55</td><td>~60</td><td class="pass">&#x2713;</td><td class="pass">&#x2713;</td><td class="pass">&#x2713;</td><td>&euro;11.0M</td><td>&euro;32.9M</td></tr>
+  </table>
+  <p style="font-size:9.5px;color:#686868;margin-top:3px;">All BWA = 593 features (~52/yr). &lt;1% = drop 35 features below 1% usage (~49/yr). &lt;5% = drop 56 features (~47/yr). Completions/yr = 22 &times; (FTE/13)<sup>0.7</sup>. Cost = FTE &times; &euro;200k (&euro;150k base &times; 1.33&times; specialization). <a href="https://en.wikipedia.org/wiki/Brooks%27s_law">Brooks's Law</a> scaling exponent 0.7.</p>
+</div>
+
+<div class="section">
+  <h2>Feature Readiness Today</h2>
+  <div class="bar-track">
+    <div class="bar-seg" style="width:19.8%;background:#1f6e1f;" title="Full"></div>
+    <div class="bar-seg" style="width:75.9%;background:#8a5a00;" title="Partial"></div>
+    <div class="bar-seg" style="width:4.3%;background:#a33;" title="Not supported"></div>
+  </div>
+  <div style="display:flex;gap:10px;font-size:9.5px;color:#666;margin-bottom:6px;">
+    <span><span style="color:#1f6e1f;">&#9632;</span> 87 full (19.8%)</span>
+    <span><span style="color:#8a5a00;">&#9632;</span> 333 partial (75.9%)</span>
+    <span><span style="color:#a33;">&#9632;</span> 19 unsupported (4.3%)</span>
+  </div>
+  <p style="font-size:10.5px;color:#1d1d1d;line-height:1.4;">Of 593 BWA features, 439 have WPT test coverage. 154 lack WPT mapping: 78 JS built-ins (SpiderMonkey/test262), 23 semantic HTML elements, 53 other (WebGL extensions, DOM, CSS, etc.). The 78 JS built-ins and 23 semantic HTML elements (~66% of unmeasured) are supported via SpiderMonkey and the HTML parser respectively; the remaining 53 have unknown status. WPT pass rate doubled from 30% to 62% over 2.5 years.</p>
+  <h2 style="margin-top:12px;">BWA Growth Pipeline</h2>
+  <table>
+    <tr><th>Year</th><th>New BWA</th><th>Cumulative</th><th>Source</th></tr>
+    <tr><td>2026</td><td>+61</td><td>654</td><td>Known pipeline</td></tr>
+    <tr><td>2027</td><td>+42</td><td>696</td><td>Known pipeline</td></tr>
+    <tr><td>2028</td><td>+27</td><td>723</td><td>Known pipeline</td></tr>
+    <tr><td>2029+</td><td>~52/yr</td><td>~775+</td><td>Projected avg</td></tr>
+  </table>
+</div>
+
+</div>
+
+<div class="two-col">
+
+<div class="section">
+  <h2>Impact of Usage Prioritization</h2>
+  <table>
+    <tr style="background:rgba(71,11,0,0.05);"><th style="text-align:left;"></th><th style="text-align:right;">Full BWA</th><th style="text-align:right;">Drop &lt;1%</th><th style="text-align:right;">Drop &lt;5%</th></tr>
+    <tr><td>Target features</td><td style="text-align:right;">593</td><td style="text-align:right;">558 (<span class="pass">&minus;35</span>)</td><td style="text-align:right;">537 (<span class="pass">&minus;56</span>)</td></tr>
+    <tr><td>BWA growth rate</td><td style="text-align:right;">~52/yr</td><td style="text-align:right;">~49/yr</td><td style="text-align:right;">~47/yr</td></tr>
+    <tr><td>Parity FTE</td><td style="text-align:right;font-weight:700;">~44</td><td style="text-align:right;font-weight:700;color:#1f6e1f;">~41</td><td style="text-align:right;font-weight:700;color:#1f6e1f;">~38</td></tr>
+    <tr><td>Cost/yr</td><td style="text-align:right;">&euro;8.8M</td><td style="text-align:right;">&euro;8.2M</td><td style="text-align:right;">&euro;7.6M</td></tr>
+    <tr><td>3yr total</td><td style="text-align:right;">&euro;26.3M</td><td style="text-align:right;">&euro;24.5M</td><td style="text-align:right;">&euro;22.7M</td></tr>
+    <tr style="background:rgba(42,125,42,0.06);"><td style="font-weight:700;color:#1f6e1f;">3yr savings</td><td style="text-align:right;color:#686868;">&mdash;</td><td style="text-align:right;font-weight:700;color:#1f6e1f;">&euro;1.8M</td><td style="text-align:right;font-weight:700;color:#1f6e1f;">&euro;3.6M</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>Key Strategic Factors</h2>
+  <div class="insight-row">
+    <div class="insight-num">1</div>
+    <div class="insight-text"><strong class="fail">Velocity gap</strong> — Servo completes 22 features/yr vs 52 new BWA/yr. At 13 FTE it plateaus at ~80% by ~2037 and never catches up. This is the core funding case.</div>
+  </div>
+  <div class="insight-row">
+    <div class="insight-num">2</div>
+    <div class="insight-text"><strong class="fail">141 stalled features</strong> have zero velocity. These need architectural work and block milestones above 50%.</div>
+  </div>
+  <div class="insight-row">
+    <div class="insight-num">3</div>
+    <div class="insight-text"><strong class="fail">51 regressions</strong> — features that lost &gt;5 percentage points. Fixing these is the cheapest path to closing the gap.</div>
+  </div>
+  <div class="insight-row">
+    <div class="insight-num">4</div>
+    <div class="insight-text"><strong style="color:#686868;">154 unmeasured features</strong> &mdash; 78 JS built-ins and 23 semantic HTML elements are supported via SpiderMonkey and the HTML parser; 20 WebGL extensions depend on GPU drivers; 33 have unknown status. Closing the measurement gap could lift readiness without engine work.</div>
+  </div>
+  <div class="insight-row">
+    <div class="insight-num">5</div>
+    <div class="insight-text"><strong>Strategic focus > headcount.</strong> Doubling FTE cuts time ~40% due to <a href="https://en.wikipedia.org/wiki/Brooks%27s_law">Brooks&rsquo;s Law</a>. Targeted investment in regressions and stalled features delivers more progress per euro than broad hiring.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section" style="margin-top:-4px;">
+  <h2>Methodology</h2>
+  <p style="font-size:10px;line-height:1.45;color:#666;">Readiness measured against Baseline &ldquo;Widely Available&rdquo; (BWA) web features &mdash; supported 30+ months across all major browsers. Feature scores from Web Platform Tests (WPT) via WPT Feature Manifest mapping. 439 of 593 BWA features are measurable; 154 lack WPT mapping (78 JS built-ins tested by test262 not WPT, 23 semantic HTML elements, 53 other with unknown status). FTE-equivalent from per-author commit frequency (1 FTE &asymp; 22 commits/month, capped at 1.0 per person; 115 authors sum to ~13 FTE). BWA growth rate of ~52/year is the 2023&ndash;2025 average, normalized to exclude the 2022 interop spike. Known pipeline: 130 features graduating by 2028. Velocity parity = Servo&rsquo;s annual feature completion rate &ge; BWA annual growth rate. Completions/yr = 22 &times; (FTE/13)<sup>0.7</sup> (sublinear <a href="https://en.wikipedia.org/wiki/Brooks%27s_law">Brooks&rsquo;s Law</a> scaling). Stalled = zero or negative velocity over the full observation period (2023-Q3 to 2026-Q1). Regressions = features that lost &gt;5 percentage points. Cost at &euro;200k/yr per FTE: &euro;150k European senior SWE median total cost &times; 1.33&times; premium for browser-engine specialization (small talent pool, Rust/rendering/layout) and multi-disciplinary practice (software development + W3C/WHATWG standards participation + open-source community management). Calibrated against <a href="https://nlnet.nl/core/faq/">NLnet</a> (&euro;117k, up to &euro;65/hr), <a href="https://www.sovereign.tech/programs/fellowship">Sovereign Tech Fund</a> (&euro;79&ndash;101k, TVöD-Bund + employer costs), <a href="https://www.levels.fyi/companies/mozilla/salaries/software-engineer/locations/germany">Mozilla Germany</a> (&euro;145&ndash;164k), and <a href="https://github.com/servo/project">Servo grant rates</a> (&euro;248k US contractor). Excludes other opex, infrastructure, management overhead, and inflation. Usage-prioritized scenarios: at &lt;1% threshold, 35 features deprioritized (target 558, growth ~49/yr); at &lt;5%, 56 features deprioritized (target 537, growth ~47/yr). Data: wpt.fyi, web-features, Servo git history. Full interactive dashboard: dashboard.html.</p>
+</div>
+
+<p style="font-size:9px;line-height:1.45;color:#686868;margin-top:2px;">Thanks to the people who&rsquo;ve reviewed the methodology and approach so far. NOTE: AI was used in the making of this draft report. For suggestions for improvement or to report inaccuracies, contact <a href="mailto:dietrich@webtransitions.org">dietrich@webtransitions.org</a>.</p>
+
+<div class="footer">
+  Servo Baseline Readiness Evaluation &mdash; Data as of March 2026 &mdash; <a href="https://webtransitions.org">webtransitions.org</a>
+</div>
+
+</body>
+</html>
