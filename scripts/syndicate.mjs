@@ -14,7 +14,7 @@
 //   /.well-known/atproto-did                 (content/well-known/)
 //   <link rel="site.standard.document">      (_includes/layouts/base.njk)
 //
-// Records for posts removed from content/posts/ are deleted from the repo.
+// Records for posts removed from content/<slug>/index.md are deleted from the repo.
 //
 // Usage:
 //   ATPROTO_IDENTIFIER=you.example ATPROTO_PASSWORD=app-password npm run syndicate
@@ -36,7 +36,7 @@
 // https://standard.site for the current definitions.
 
 import { readFile, readdir } from "node:fs/promises";
-import { basename, join } from "node:path";
+import { join } from "node:path";
 import matter from "gray-matter";
 import { Agent } from "@atproto/api";
 
@@ -60,16 +60,29 @@ const service = process.env.ATPROTO_SERVICE || "https://bsky.social";
 
 // ---------------------------------------------------------------- posts ----
 async function loadPosts() {
-	const dir = new URL("../content/posts/", import.meta.url).pathname;
-	const files = (await readdir(dir)).filter(f => f.endsWith(".md"));
+	const contentDir = new URL("../content/", import.meta.url).pathname;
+	const entries = await readdir(contentDir, { withFileTypes: true });
 	const posts = [];
-	for (const file of files) {
-		const raw = await readFile(join(dir, file), "utf8");
+
+	for (const entry of entries) {
+		if (!entry.isDirectory()) continue;
+
+		const file = join(contentDir, entry.name, "index.md");
+		let raw;
+		try {
+			raw = await readFile(file, "utf8");
+		} catch (error) {
+			if (error.code === "ENOENT") continue;
+			throw error;
+		}
+
 		const { data, content } = matter(raw);
+		const tags = Array.isArray(data.tags) ? data.tags : (data.tags ? [data.tags] : []);
+		if (data.layout !== "layouts/post.njk" && !tags.includes("posts")) continue;
 		if (data.draft && !includeDrafts) continue;
 		if (data.atproto_skip) continue;
 
-		const slug = basename(file, ".md");
+		const slug = data.slug || entry.name;
 		const rkey = data.atproto_rkey || slug;
 		const createdAt = data.date ? new Date(data.date).toISOString() : new Date().toISOString();
 		const updatedAt = data.updated ? new Date(data.updated).toISOString() : createdAt;
@@ -85,7 +98,8 @@ async function loadPosts() {
 			updatedAt,
 		});
 	}
-	return posts;
+
+	return posts.sort((a, b) => a.path.localeCompare(b.path));
 }
 
 const publicationRecord = (existing) => ({
@@ -109,7 +123,7 @@ const documentRecord = (post) => ({
 // ------------------------------------------------------------------ run ----
 
 const posts = await loadPosts();
-console.log(`Loaded ${posts.length} post(s) from content/posts/`);
+console.log(`Loaded ${posts.length} post(s) from content/<slug>/index.md`);
 
 if (dryRun) {
 	console.log("\n--dry-run: would publish this publication record:");

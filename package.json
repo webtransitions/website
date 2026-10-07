@@ -4,8 +4,9 @@
 	"description": "webtransitions.org, built with Eleventy, syndicated to atproto via standard.site",
 	"type": "module",
 	"scripts": {
-		"build": "npx @11ty/eleventy",
-		"start": "npx @11ty/eleventy --serve --quiet",
+		"clean": "node scripts/clean.mjs",
+		"build": "npm run clean && npx @11ty/eleventy",
+		"start": "npm run clean && npx @11ty/eleventy --serve --quiet",
 		"debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy",
 		"syndicate": "node scripts/syndicate.mjs",
 		"syndicate:dry": "node scripts/syndicate.mjs --dry-run"

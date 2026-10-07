@@ -1,3 +1,6 @@
+import { copyFile, mkdir, readdir } from "node:fs/promises";
+import { dirname, extname, join, relative } from "node:path";
+
 import { IdAttributePlugin, InputPathToUrlTransformPlugin, HtmlBasePlugin } from "@11ty/eleventy";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
@@ -5,6 +8,23 @@ import pluginNavigation from "@11ty/eleventy-navigation";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 import pluginFilters from "./_config/filters.js";
+
+const imageExtensions = new Set([".avif", ".svg", ".webp", ".png", ".jpg", ".jpeg", ".gif"]);
+
+async function copyPostImages(sourceRoot, outputRoot, current = sourceRoot) {
+	for(const entry of await readdir(current, { withFileTypes: true })) {
+		const source = join(current, entry.name);
+		if(entry.isDirectory()) {
+			await copyPostImages(sourceRoot, outputRoot, source);
+			continue;
+		}
+		if(!imageExtensions.has(extname(entry.name).toLowerCase())) continue;
+
+		const destination = join(outputRoot, relative(sourceRoot, source));
+		await mkdir(dirname(destination), { recursive: true });
+		await copyFile(source, destination);
+	}
+}
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function(eleventyConfig) {
@@ -36,8 +56,20 @@ export default async function(eleventyConfig) {
 	// Run Eleventy when these files change:
 	// https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
 
-	// Watch images for the image pipeline.
-	eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpg,jpeg,gif}");
+	// Colocated images are copied only for pages Eleventy actually rendered.
+	// This keeps content/<slug>/image.jpg at /<slug>/image.jpg without leaking
+	// assets from draft posts into production. Referenced images are also
+	// optimized by eleventy-img below.
+	eleventyConfig.on("eleventy.after", async ({ results }) => {
+		for(const result of results || []) {
+			const inputPath = result.inputPath?.replaceAll("\\", "/");
+			if(!inputPath?.match(/(?:^|\/)content\/[^/]+\/index\.md$/) || !result.outputPath) continue;
+			await copyPostImages(dirname(result.inputPath), dirname(result.outputPath));
+		}
+	});
+
+	// Watch colocated images for the image pipeline and copy hook.
+	eleventyConfig.addWatchTarget("content/**/*.{avif,svg,webp,png,jpg,jpeg,gif}");
 
 	// Per-page bundles, see https://github.com/11ty/eleventy-plugin-bundle
 	// Adds the {% css %} paired shortcode

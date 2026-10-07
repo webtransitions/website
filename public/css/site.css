@@ -51,7 +51,9 @@ p,ul,ol {
   margin-bottom: 0;
 }
 
-.initiatives li {
+/* The homepage is Markdown, so target the list following its generated
+   heading ID instead of requiring an HTML class in the content. */
+.content h2#initiatives + ul li {
   margin-bottom: 1em;
 }
 

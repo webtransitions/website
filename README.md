@@ -8,39 +8,60 @@ the site root and syndication to the [AT Protocol](https://atproto.com) via the
 
 ```
 content/                 # site content (input dir)
-  index.html             # homepage
-  posts/<slug>.md        # blog posts -> https://webtransitions.org/<slug>/
+  index.md               # homepage
+  <slug>/                # one directory per blog post
+    index.md              # -> https://webtransitions.org/<slug>/
+    image.jpg             # -> https://webtransitions.org/<slug>/image.jpg
   404.md, tags.njk, tag-pages.njk, sitemap.xml.njk
   feed/                  # atom feed + stylesheet
   well-known/            # standard.site / atproto verification routes
-_includes/layouts/       # base.njk, post.njk
+_includes/layouts/       # base.njk, home.njk, post.njk
 _data/                   # metadata.js, atproto.js (syndication config)
 public/                  # copied verbatim to output: css/, servo-readiness/, CNAME
 scripts/syndicate.mjs    # publishes posts to atproto as standard.site records
 ```
 
+## Editing the homepage
+
+The homepage is Markdown in `content/index.md`. Its title and subtitle wrapper
+is `_includes/layouts/home.njk`; shared page chrome remains in
+`_includes/layouts/base.njk`.
+
 ## Writing a post
 
+Each post owns a directory containing its Markdown and images:
+
 ```sh
-$EDITOR content/posts/my-post-slug.md
+mkdir -p content/my-post-slug
+$EDITOR content/my-post-slug/index.md
 ```
 
 ```markdown
 ---
+layout: layouts/post.njk
 title: My post
 date: 2026-10-07
 description: One-line summary, used in feeds and atproto records.
 tags: ["posts", "browsers"]
 ---
 
-Body in markdown.
+Body in Markdown.
+
+![Diagram](diagram.png)
 ```
 
-- URL: `https://webtransitions.org/my-post-slug/` (filename = slug, metafluff-style but off the domain root, no `/posts/` prefix)
+Put `diagram.png` beside `index.md`. The folder name is the slug, so this
+example publishes both:
+
+- post: `https://webtransitions.org/my-post-slug/`
+- image: `https://webtransitions.org/my-post-slug/diagram.png`
+
+There is no `/posts/` URL prefix.
+
 - `draft: true` hides a post from production builds; it stays in `npm start`
   locally and appears on staging
 - `updated: 2026-10-09` marks a revision (feeds + atproto `updatedAt`)
-- `atproto_rkey: custom-key` overrides the atproto record key (default: slug)
+- `atproto_rkey: custom-key` overrides the atproto record key (default: folder slug)
 - `atproto_skip: true` keeps a post off atproto entirely
 
 ## Develop / build
