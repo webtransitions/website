@@ -53,5 +53,18 @@ steps:
       # the push cannot be redirected.
       echo 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl' > "$d/known_hosts"
       export GIT_SSH_COMMAND="ssh -i $d/key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$d/known_hosts"
-      git push "git@github.com:$GITHUB_REPO.git" \
-        'refs/heads/*:refs/heads/*' 'refs/tags/*:refs/tags/*'
+      # Two branch pushes can compile simultaneous workflows, and each pushes
+      # every ref. GitHub rejects one if both update its refs at the same instant
+      # ("cannot lock ref … expected …"). Retrying is safe and idempotent: both
+      # runs fetched the same authoritative refs from the knot.
+      attempt=1
+      until git push "git@github.com:$GITHUB_REPO.git" \
+        'refs/heads/*:refs/heads/*' 'refs/tags/*:refs/tags/*'; do
+        if [ "$attempt" -ge 3 ]; then
+          echo "GitHub mirror push still failing after $attempt attempts" >&2
+          exit 1
+        fi
+        attempt=$((attempt + 1))
+        echo "Concurrent mirror push raced; retrying ($attempt/3)…" >&2
+        sleep 2
+      done
