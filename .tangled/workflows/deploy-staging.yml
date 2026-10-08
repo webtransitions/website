@@ -68,4 +68,14 @@ steps:
       git config user.email "deploy@webtransitions.org"
       git add -A
       git commit -m "Staging deploy $src_sha"
-      git push --force "git@github.com:$GITHUB_STAGING_REPO.git" gh-pages:gh-pages
+      # Retry transient DNS/network failures between the spindle and GitHub.
+      attempt=1
+      until git push --force "git@github.com:$GITHUB_STAGING_REPO.git" gh-pages:gh-pages; do
+        if [ "$attempt" -ge 3 ]; then
+          echo "Staging output push still failing after $attempt attempts" >&2
+          exit 1
+        fi
+        attempt=$((attempt + 1))
+        echo "Staging output push failed; retrying ($attempt/3)…" >&2
+        sleep 5
+      done
