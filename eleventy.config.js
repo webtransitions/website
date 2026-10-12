@@ -96,7 +96,7 @@ export default async function(eleventyConfig) {
 		metadata: {
 			language: "en",
 			title: "WebTransitions",
-			subtitle: "Supporting transitional change on the web platform and in browsers with funding, coordination and development.",
+			subtitle: "A research and development lab for experiments in the web platform, browsers, and what comes after them.",
 			base: process.env.SITE_URL || "https://webtransitions.org/",
 			author: {
 				name: "Dietrich Ayala",

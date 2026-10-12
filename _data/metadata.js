@@ -2,9 +2,9 @@ export default {
 	"title": "WebTransitions",
 	"url": process.env.SITE_URL || "https://webtransitions.org/",
 	"language": "en",
-	"description": "Supporting transitional change on the web platform and in browsers with funding, coordination and development.",
+	"description": "A research and development lab for experiments in the web platform, browsers, and what comes after them.",
 	"feed": {
-		"subtitle": "Supporting transitional change on the web platform and in browsers with funding, coordination and development.",
+		"subtitle": "A research and development lab for experiments in the web platform, browsers, and what comes after them.",
 		"filename": "feed.xml",
 		"path": "/feed/feed.xml",
 		"id": "https://webtransitions.org/"
