@@ -13,14 +13,14 @@ WebTransitions is a laboratory for those questions. Each experiment is small, op
 
 ## Experiments
 
-- **Peek**: An experimental web user agent. It started as a browser extension exploring persistent versus transient task modeling (tabs versus panels), and is now a workbench for exploring what comes after browsers in many different ways. What is using the web like with no tabs? With AI, but no model prompt?
-- **Singular**: How can web pages be made *weightless*? Every page carries load that has nothing to do with its content: cognitive and emotional load, trust decisions at several levels, maintenance costs, install decisions. Experiments include:
+- **[Peek](https://tangled.org/burrito.space/peek)**: An experimental web user agent. It started as a browser extension exploring persistent versus transient task modeling (tabs versus panels), and is now a workbench for exploring what comes after browsers in many different ways. What is using the web like with no tabs? With AI, but no model prompt?
+- **[Singular](https://tangled.org/burrito.space/singular)**: How can web pages be made *weightless*? Every page carries load that has nothing to do with its content: cognitive and emotional load, trust decisions at several levels, maintenance costs, install decisions. Experiments include:
   - Opening pages without any browser branding at all, because the cognitive and emotional load of browser choice is not zero.
   - Opening pages from the point of view of the *publisher*, the way they would want them to be opened.
   - Opening pages that run as standalone apps.
   - Opening pages as standalone apps that are never installed, and disappear completely when closed.
 - **[Szzt](https://szzt.app)**: Drag and drop publishing of web pages on [atproto](https://atproto.com), openable by any renderer or gateway, with different render contexts. How might a page be created and published without needing a domain name? An experiment in being discovered, verified and served through an atproto identity.
-- **Bez**: An experiment in a spec-generated web engine, authored entirely by local AI models.
+- **[Bez](https://tangled.org/burrito.space/bez)**: An experiment in a spec-generated web engine, authored entirely by local AI models.
 
 More experiments are on the way.
 
