@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>WebTransitions</title>
+  	<meta name="description" content="Research and development exploring the web, AI and what comes after browsers.">
+  	<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="WebTransitions">
+  	<meta name="generator" content="Eleventy v3.1.6">
+
+  	<link rel="preconnect" href="https://fonts.googleapis.com">
+  	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  	<link href="https://fonts.googleapis.com/css2?family=Pragati+Narrow:wght@400;700&display=swap" rel="stylesheet">
+  	<style>/* webtransitions.org — carried over from the original one-page site,
+   plus styles for blog posts. */
+
+.pragati-narrow-regular {
+  font-family: "Pragati Narrow", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pragati-narrow-bold {
+  font-family: "Pragati Narrow", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/*
+https://gist.github.com/JoeyBurzynski/617fb6201335779f8424ad9528b72c41
+*/
+
+html {
+  max-width: 70ch;
+  padding: 1em 0.5em;
+  margin: auto;
+  line-height: 1.25;
+  font-size: 1.25rem;
+  background: rgb(247 226 231);
+  font-family: "Pragati Narrow";
+  color: rgb(71 11 0);
+}
+
+.content {
+  background-color: rgb(247 226 231);
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Pragati Narrow";
+}
+
+.subtitle {
+  margin: 0;
+}
+
+p,ul,ol {
+  color: #1d1d1d;
+}
+
+/* homepage lists (the original site used unstyled lists) */
+.content ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+/* The homepage is Markdown, so target the list following its generated
+   heading ID instead of requiring an HTML class in the content. */
+.content h2#projects + ul > li {
+  margin-bottom: 1em;
+}
+
+@media screen and (min-width: 768px) {
+  html {
+    padding: 2em 0.5em;
+    margin: auto;
+    line-height: 1.25;
+    font-size: 1.25rem;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    margin: 1em 0 0.5em;
+  }
+
+  p,ul,ol {
+    margin-bottom: 1.5em;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Blog posts
+   --------------------------------------------------------------- */
+
+.post a {
+  color: rgb(71 11 0);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.post-metadata {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0 0 1.5em;
+  font-size: 1rem;
+  color: #1d1d1d;
+}
+
+.post-metadata li {
+  display: inline;
+  margin-right: 0.75em;
+}
+
+.post-tag {
+  font-size: 0.85em;
+}
+
+.post blockquote {
+  margin: 1.5em 0;
+  padding-left: 1em;
+  border-left: 3px solid rgba(71 11 0, 0.3);
+  color: #1d1d1d;
+}
+
+.post img {
+  max-width: 100%;
+  height: auto;
+}
+
+.post pre {
+  padding: 1em;
+  border-radius: 6px;
+  background: rgba(71 11 0, 0.06);
+  overflow-x: auto;
+  font-size: 1rem;
+}
+
+.post code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+.post hr {
+  border: 0;
+  border-top: 1px solid rgba(71 11 0, 0.3);
+  margin: 2em 0;
+}
+
+.postlist {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.postlist li {
+  margin-bottom: 0.75em;
+}
+
+.postlist-date {
+  display: block;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.links-nextprev {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 3em;
+  display: flex;
+  gap: 2em;
+}
+
+.links-nextprev a {
+  color: rgb(71 11 0);
+}
+
+.footer {
+  margin-top: 3em;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* ---------------------------------------------------------------
+   Staging build banner (SITE_ENV=staging)
+   --------------------------------------------------------------- */
+
+.staging-banner {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.35em 1em;
+  margin: -1em -0.5em 1em;
+  background: rgb(71 11 0);
+  color: rgb(247 226 231);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.staging-banner a {
+  color: rgb(247 226 231);
+}
+
+@media screen and (min-width: 768px) {
+  .staging-banner {
+    margin: -2em -0.5em 1em;
+  }
+}</style>
+  </head>
+  <body>
+  	<main>
+  		<div class="content">
+	<h1 id="webtransitions">WebTransitions</h1>
+	<h4 class="subtitle" id="research-and-development-exploring-the-web-ai-and-what-comes-after-browsers">Research and development exploring the web, AI and what comes after browsers.</h4>
+
+	<p>Changing the web is difficult and slow, and experimentation on the web has long required decades of expertise, and immense amounts of funding. Today, the future of the web is determined mostly by the few companies with the resources to do so.</p>
+<p>But making the web should not be impossible, or the web itself cannot grow and change with the needs of the people who use it.</p>
+<p>Today, the future of the web is less certain than ever, as AI becomes more central to both publishing and consumption. In such times, change on the web can't be left to the few small groups who've concentrated that power.</p>
+<p>WebTransitions explores alternate futures for the web through experiments reenvisioning the web with radical agency - user agents shaped by users, web platform features addressing the needs of the few vs privileged target audiences of publishers, and making web rendering engines available to everyone instead of just three US companies.</p>
+<h2 id="projects">Projects</h2>
+<ul>
+<li><strong><a href="https://tangled.org/burrito.space/peek">Peek</a></strong>: An experimental web user agent. It started as a browser extension exploring persistent versus transient task modeling (tabs versus panels), and is now a workbench for exploring what comes after browsers in many different ways. What is using the web like with no tabs? With AI, but no model prompt?</li>
+<li><strong><a href="https://tangled.org/burrito.space/singular">Singular</a></strong>: How can web pages be made <em>weightless</em>? Every page carries load that has nothing to do with its content: cognitive and emotional load, trust decisions at several levels, maintenance costs, install decisions. Experiments include:
+<ul>
+<li>Opening pages without any browser branding at all, because the cognitive and emotional load of browser choice is not zero.</li>
+<li>Opening pages from the point of view of the <em>publisher</em>, the way they would want them to be opened.</li>
+<li>Opening pages that run as standalone apps.</li>
+<li>Opening pages as standalone apps that are never installed, and disappear completely when closed.</li>
+</ul>
+</li>
+<li><strong><a href="https://szzt.app">Szzt</a></strong>: Drag and drop publishing of web pages on <a href="https://atproto.com">atproto</a>, openable by any renderer or gateway, with different render contexts. How might a page be created and published without needing a domain name? An experiment in being discovered, verified and served through an atproto identity.</li>
+<li><strong><a href="https://tangled.org/burrito.space/bez">Bez</a></strong>: An experiment in creating a web rendering engine entirely from the rich data of <a href="https://github.com/mdn/browser-compat-data">Browser Compat Data</a>, <a href="https://github.com/w3c/browser-specs">W3C Web Specs repo</a> and <a href="https://github.com/w3c/webref">WebRef</a>, <a href="https://web-platform-tests.org/">Web Platform Tests</a> and the <a href="https://web-platform-dx.github.io/web-features-project/">Web Features Project</a>, authored entirely by local AI models on the Userandagents.org folknet. <a href="https://news.ycombinator.com/item?id=49925036">HN front page in October 2026</a>.</li>
+<li><strong>EU Cyber Resilience Act</strong>: Subject matter expert hired by Crab Nebula in 2026 for drafting, review, and comment resolution of the <a href="https://labs.etsi.org/rep/stan4cra/en-304-617">CRA draft standard for Standalone and Embedded Browsers</a>. Collaborated with stakeholders, policy makers and browser vendors to synthesize EU regulatory requirements and web standards into a document that balances the needs of each, while being as future-proof as possible.</li>
+<li><strong>Servo Readiness Report</strong>: The <a href="/servo-readiness/">Servo Readiness Report</a> (<a href="/servo-readiness/servo-readiness-one-pager.pdf">PDF</a>) is a report-in-progress published early 2026 which evaluates how far Servo is from being a usable web engine, and what amount of funding would get it usable sooner, with an aim to inform planning for a non-US multi-stakeholder governed web engine for use by everyone.</li>
+<li><strong>Custom scheme support in browsers</strong>: Since co-creating the <a href="https://github.com/mozilla/libdweb">Libdweb</a> project at Mozilla in 2018, over nearly 5yrs working on <a href="https://blog.ipfs.tech/?tags=browsers">P2P support in browsers</a> at <a href="https://www.protocol.ai/">Protocol Labs</a>, and getting bugs fixed, standards revised, and even major refactors in Chromium, still pushing on reducing barriers to enabling a multi-protocol web. Kicked off while leading the Browsers &amp; Platforms team at PL, currently advising Igalia and the IPFS Fdn on an ongoing initiative to get custom scheme support into web extension manifests, and to follow that with backing those schemes with byte streams, not just extension-bundled HTML pages.</li>
+<li><strong>Ed25519</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API">Ed25519 support in the Web Cryptography API</a>: Kicked this off while at Protocol Labs, continued advising the project generally and directly getting vendor movement over 3+ years before all three engines finally shipped it in release versions in 2025 (<a href="https://blogs.igalia.com/jfernandez/2025/08/25/ed25519-support-lands-in-chrome-what-it-means-for-developers-and-the-web/">Igalia post</a>, <a href="https://blog.ipfs.tech/2025-08-ed25519/">IPFS Fdn post</a>).</li>
+<li><strong>Web Features data set</strong>: <a href="https://web-platform-dx.github.io/web-features/">Web Features Project</a>: Spent half of 2024 working in the W3C Web DX CG on behalf of Google, creating web feature definitions which let us reason about the web platform as ~1200 discrete features vs 15k+ unique pieces. These are used by MDN, Caniuse, Visual Studio, and many more.</li>
+<li><strong>Intent to Ship</strong>: Created in 2016, and running continuously since, <a href="https://bsky.app/profile/intenttoship.dev">@Intenttoship</a> bot posts when browser makers announce an intent to ship, change or remove features in their web engines.</li>
+</ul>
+<h2 id="areas-of-research">Areas of research</h2>
+<ul>
+<li>Experimental user agents and post-browser interfaces</li>
+<li>Task modeling: tabs, panels, and what replaces them</li>
+<li>AI in the user agent, beyond the chat prompt</li>
+<li>Reducing the cost of opening, trusting and keeping web pages</li>
+<li>Publishing and identity without domain names</li>
+<li>atproto, decentralized and distributed web</li>
+<li>Non-HTTP protocols, multiprotocol support</li>
+<li>Spec-driven and AI-authored web engines</li>
+<li>Portable and resilient web apps</li>
+<li>Verifiability / provenance</li>
+<li>Web form factor / OS integration / webviews</li>
+</ul>
+<h2 id="who">Who</h2>
+<p>After many years working towards paradigmatic change on the web at Mozilla and Protocol Labs, WebTransitions was formed by <a href="https://metafluff.com">Dietrich Ayala</a> as a not-for-profit organization (pending) to enable experimentation and innovation on the web platform.</p>
+<p>Working or worked with these fine folks, among others:</p>
+<p>Google, Mozilla, Apple, Igalia, CrabNebula, Protocol Labs, IPFS Foundation, Little Bear Labs, IPShipyard, Open Impact Foundation, Brave, Peergos and more.</p>
+<h2 id="collaborate">Collaborate</h2>
+<p>Interested in these experiments, running one of your own, or connecting with others working on what comes after browsers? See <a href="https://userandagents.org">userandagents.org</a> for how to connect and collaborate.</p>
+<p>Or email <a href="mailto:hello@webtransitions.org">hello@webtransitions.org</a>.</p>
+
+</div>
+
+  	</main>
+
+  	<footer class="footer">
+  		<p><em>Built with <a href="https://www.11ty.dev/">Eleventy v3.1.6</a>.
+  		<a href="/feed/feed.xml">Atom feed</a></em></p>
+  	</footer>
+
+  	<!-- This page `/` was built on 2026-10-14T04:53:33.139Z -->
+
+  	<!-- Fathom - beautiful, simple website analytics -->
+  	<script defer="" data-site="SUNQHGSW" src="https://cdn.usefathom.com/script.js"></script>
+  </body>
+</html>
