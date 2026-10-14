@@ -109,12 +109,11 @@ One-time staging setup already done:
 - `GITHUB_STAGING_KEY_B64` stored on `spindle.superflow.dev` via Tangled XRPC;
   the ready-to-restore value remains at
   `~/.config/webtransitions-staging/id_ed25519.b64`
-
-Remaining manual step:
-
-1. DNS: `staging.webtransitions.org. CNAME webtransitions.github.io.`
-   (cert is provisioned automatically once it resolves; then enable
-   "Enforce HTTPS" in the repo's Pages settings)
+- DNS: `staging.webtransitions.org. CNAME webtransitions.github.io.`
+- HTTPS certificate issued and "Enforce HTTPS" on. GitHub did not request a
+  certificate on its own after DNS resolved; clearing and re-setting the
+  custom domain (`gh api -X PUT repos/webtransitions/staging/pages -f cname=`
+  then `-f cname=staging.webtransitions.org`) triggered it.
 
 ## Deployment
 
