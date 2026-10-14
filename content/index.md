@@ -28,7 +28,7 @@ WebTransitions explores alternate futures for the web through experiments reenvi
 - **Custom scheme support in browsers**: Since co-creating the [Libdweb](https://github.com/mozilla/libdweb) project at Mozilla in 2018, over nearly 5yrs working on [P2P support in browsers](https://blog.ipfs.tech/?tags=browsers) at [Protocol Labs](https://www.protocol.ai/), and getting bugs fixed, standards revised, and even major refactors in Chromium, still pushing on reducing barriers to enabling a multi-protocol web. Kicked off while leading the Browsers & Platforms team at PL, currently advising Igalia and the IPFS Fdn on an ongoing initiative to get custom scheme support into web extension manifests, and to follow that with backing those schemes with byte streams, not just extension-bundled HTML pages.
 - **Ed25519** [Ed25519 support in the Web Cryptography API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API): Kicked this off while at Protocol Labs, continued advising the project generally and directly getting vendor movement over 3+ years before all three engines finally shipped it in release versions in 2025 ([Igalia post](https://blogs.igalia.com/jfernandez/2025/08/25/ed25519-support-lands-in-chrome-what-it-means-for-developers-and-the-web/), [IPFS Fdn post](https://blog.ipfs.tech/2025-08-ed25519/)).
 - **Web Features data set**: [Web Features Project](https://web-platform-dx.github.io/web-features/): Spent half of 2024 working in the W3C Web DX CG on behalf of Google, creating web feature definitions which let us reason about the web platform as ~1200 discrete features vs 15k+ unique pieces. These are used by MDN, Caniuse, Visual Studio, and many more.
-- **Intent to Ship**: Created in 2026, and running continuously since, [@Intenttoship](https://bsky.app/profile/intenttoship.dev) bot posts when browser makers announce an intent to ship, change or remove features in their web engines.
+- **Intent to Ship**: Created in 2016, and running continuously since, [@Intenttoship](https://bsky.app/profile/intenttoship.dev) bot posts when browser makers announce an intent to ship, change or remove features in their web engines.
 
 ## Areas of research
 
@@ -52,14 +52,14 @@ Working or worked with these fine folks, among others:
 
 Google, Mozilla, Apple, Igalia, CrabNebula, Protocol Labs, IPFS Foundation, Little Bear Labs, IPShipyard, Open Impact Foundation, Brave, Peergos and more.
 
-<!--
+{#
 {% if collections.posts.length %}
 ## Writing
 
 {% set postslist = collections.posts %}
 {% include "postslist.njk" %}
 {% endif %}
--->
+#}
 
 ## Collaborate
 
