@@ -1,17 +1,19 @@
 ---
 layout: layouts/home.njk
 title: WebTransitions
-subtitle: A research and development lab for experiments in the web platform, browsers, and what comes after them.
-description: A research and development lab for experiments in the web platform, browsers, and what comes after them.
+subtitle: Research and development exploring the web, AI and what comes after browsers.
+description: Research and development exploring the web, AI and what comes after browsers.
 ---
 
-Changing the web is hard, and for good reasons. But it should not be impossible, or the web itself cannot grow and change with the needs of the people who use it.
+Changing the web is difficult and slow, and experimentation on the web has long required decades of expertise, and immense amounts of funding. Today, the future of the web is determined mostly by the few companies with the resources to do so.
 
-The fastest way to find out whether a change should or could happen is to build it and try it. Experimentation on the web has long required decades of expertise and a lot of time and space. Much of that barrier is falling, and the questions worth asking are getting bigger: not just which features browsers should ship, but what using the web looks like when the browser as we know it is no longer the default way in.
+But making the web should not be impossible, or the web itself cannot grow and change with the needs of the people who use it.
 
-WebTransitions is a laboratory for those questions. Each experiment is small, opinionated, and built to be learned from.
+Today, the future of the web is less certain than ever, as AI becomes more central to both publishing and consumption. In such times, change on the web can't be left to the few small groups who've concentrated that power.
 
-## Experiments
+WebTransitions explores alternate futures for the web through experiments reenvisioning the web with radical agency - user agents shaped by users, web platform features addressing the needs of the few vs privileged target audiences of publishers, and making web rendering engines available to everyone instead of just three US companies.
+
+## Projects
 
 - **[Peek](https://tangled.org/burrito.space/peek)**: An experimental web user agent. It started as a browser extension exploring persistent versus transient task modeling (tabs versus panels), and is now a workbench for exploring what comes after browsers in many different ways. What is using the web like with no tabs? With AI, but no model prompt?
 - **[Singular](https://tangled.org/burrito.space/singular)**: How can web pages be made *weightless*? Every page carries load that has nothing to do with its content: cognitive and emotional load, trust decisions at several levels, maintenance costs, install decisions. Experiments include:
@@ -21,17 +23,12 @@ WebTransitions is a laboratory for those questions. Each experiment is small, op
   - Opening pages as standalone apps that are never installed, and disappear completely when closed.
 - **[Szzt](https://szzt.app)**: Drag and drop publishing of web pages on [atproto](https://atproto.com), openable by any renderer or gateway, with different render contexts. How might a page be created and published without needing a domain name? An experiment in being discovered, verified and served through an atproto identity.
 - **[Bez](https://tangled.org/burrito.space/bez)**: An experiment in a spec-generated web engine, authored entirely by local AI models.
-
-More experiments are on the way.
-
-## Previous work
-
-- **(2026)** EU Cyber Resilience Act [draft standard for Standalone and Embedded Browsers](https://labs.etsi.org/rep/stan4cra/en-304-617): Subject matter expert hired by Crab Nebula to participate in authoring, review, and comment resolution. Collaborated with stakeholders, policy makers and browser vendors to synthesize EU regulatory requirements and web standards into a document that balances the needs of each, while being as future-proof as possible.
-- **(2026)** The [Servo Readiness Report](/servo-readiness/) ([PDF](/servo-readiness/servo-readiness-one-pager.pdf)), a report-in-progress evaluating how far Servo is from being a usable web engine, and what amount of funding would get it usable sooner, with an aim to inform planning for a non-US multi-stakeholder governed web engine for use by everyone.
-- **(2018-∞)** Custom scheme support in browsers: Since co-creating the [Libdweb](https://github.com/mozilla/libdweb) project at Mozilla in 2018, over nearly 5yrs working on [P2P support in browsers](https://blog.ipfs.tech/?tags=browsers) at [Protocol Labs](https://www.protocol.ai/), and getting bugs fixed, standards revised, and even major refactors in Chromium, still pushing on reducing barriers to enabling a multi-protocol web. Kicked off while leading the Browsers & Platforms team at PL, currently advising Igalia and the IPFS Fdn on an ongoing initiative to get custom scheme support into web extension manifests, and to follow that with backing those schemes with byte streams, not just extension-bundled HTML pages.
-- **(2022-5)** [Ed25519 support in the Web Cryptography API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API): Kicked this off while at Protocol Labs, continued advising the project generally and directly getting vendor movement over 3+ years before all three engines finally shipped it in release versions in 2025 ([Igalia post](https://blogs.igalia.com/jfernandez/2025/08/25/ed25519-support-lands-in-chrome-what-it-means-for-developers-and-the-web/), [IPFS Fdn post](https://blog.ipfs.tech/2025-08-ed25519/)).
-- **(2024-5)** [Web Features Project](https://web-platform-dx.github.io/web-features/): Spent six months working in the W3C Web DX CG on behalf of Google, creating web feature definitions which let us reason about the web platform as ~1200 discrete features vs 15k+ unique pieces. These are used by MDN, Caniuse, Visual Studio, and many more.
-- **(2016-∞)** [@Intenttoship](https://bsky.app/profile/intenttoship.dev): Bot that posts when browser makers announce an intent to ship, change or remove features in their web engines.
+- **EU Cyber Resilience Act**: Subject matter expert hired by Crab Nebula in 2026 for drafting, review, and comment resolution of the [CRA draft standard for Standalone and Embedded Browsers](https://labs.etsi.org/rep/stan4cra/en-304-617). Collaborated with stakeholders, policy makers and browser vendors to synthesize EU regulatory requirements and web standards into a document that balances the needs of each, while being as future-proof as possible.
+- **Servo Readiness Report**: The [Servo Readiness Report](/servo-readiness/) ([PDF](/servo-readiness/servo-readiness-one-pager.pdf)) is a report-in-progress published early 2026 which evaluates how far Servo is from being a usable web engine, and what amount of funding would get it usable sooner, with an aim to inform planning for a non-US multi-stakeholder governed web engine for use by everyone.
+- **Custom scheme support in browsers**: Since co-creating the [Libdweb](https://github.com/mozilla/libdweb) project at Mozilla in 2018, over nearly 5yrs working on [P2P support in browsers](https://blog.ipfs.tech/?tags=browsers) at [Protocol Labs](https://www.protocol.ai/), and getting bugs fixed, standards revised, and even major refactors in Chromium, still pushing on reducing barriers to enabling a multi-protocol web. Kicked off while leading the Browsers & Platforms team at PL, currently advising Igalia and the IPFS Fdn on an ongoing initiative to get custom scheme support into web extension manifests, and to follow that with backing those schemes with byte streams, not just extension-bundled HTML pages.
+- **Ed25519** [Ed25519 support in the Web Cryptography API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API): Kicked this off while at Protocol Labs, continued advising the project generally and directly getting vendor movement over 3+ years before all three engines finally shipped it in release versions in 2025 ([Igalia post](https://blogs.igalia.com/jfernandez/2025/08/25/ed25519-support-lands-in-chrome-what-it-means-for-developers-and-the-web/), [IPFS Fdn post](https://blog.ipfs.tech/2025-08-ed25519/)).
+- **Web Features data set**: [Web Features Project](https://web-platform-dx.github.io/web-features/): Spent half of 2024 working in the W3C Web DX CG on behalf of Google, creating web feature definitions which let us reason about the web platform as ~1200 discrete features vs 15k+ unique pieces. These are used by MDN, Caniuse, Visual Studio, and many more.
+- **Intent to Ship**: Created in 2026, and running continuously since, [@Intenttoship](https://bsky.app/profile/intenttoship.dev) bot posts when browser makers announce an intent to ship, change or remove features in their web engines.
 
 ## Areas of research
 
