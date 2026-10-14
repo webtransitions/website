@@ -52,12 +52,14 @@ Working or worked with these fine folks, among others:
 
 Google, Mozilla, Apple, Igalia, CrabNebula, Protocol Labs, IPFS Foundation, Little Bear Labs, IPShipyard, Open Impact Foundation, Brave, Peergos and more.
 
+<!--
 {% if collections.posts.length %}
 ## Writing
 
 {% set postslist = collections.posts %}
 {% include "postslist.njk" %}
 {% endif %}
+-->
 
 ## Collaborate
 
